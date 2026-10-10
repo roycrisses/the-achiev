@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Reveal from "@/components/Reveal";
 import PopButton from "@/components/ui/pop-button";
 
 const PINE_POP =
@@ -21,12 +22,14 @@ export default function CounsellingPage() {
           ))}
         </ul>
         {sent ? <p className="card-soft mt-6 bg-[#eef5ec] p-5 font-bold text-[#0a3a24]">Request received — we&apos;ll call you within 24 hours.</p> : (
+          <Reveal direction="zoom" distance={0.6} delay={0.1}>
           <form className="card-soft mt-6 space-y-3 p-5" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
             <input required placeholder="Name" className="field" />
             <input required placeholder="Phone" className="field" />
             <textarea placeholder="Your confusion (optional)" rows={4} className="field" />
             <PopButton className={PINE_POP}>Request Callback</PopButton>
           </form>
+          </Reveal>
         )}
         <div className="mt-6 space-y-2.5 text-sm">
           <details className="card-soft p-4"><summary className="cursor-pointer font-bold text-[#1c2b22]">Is counselling free?</summary><p className="mt-1 text-[#5d6f63]">Yes — the first 10-minute guidance session is completely free, with no enrollment pressure and no follow-up sales calls unless you ask for them.</p></details>

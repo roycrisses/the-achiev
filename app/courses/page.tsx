@@ -27,7 +27,7 @@ export default function CoursesPage() {
           </Reveal>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {TRACKS.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
+              <Reveal key={t} delay={i * 0.05} direction="up">
                 <div className="h-full rounded-[20px] bg-white/85 p-5 backdrop-blur">
                   <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#0a3a24]/55">Track {String(i + 1).padStart(2, "0")}</p>
                   <p className="mt-1 font-bold tracking-tight text-[#0a3a24]">{t}</p>
@@ -42,7 +42,7 @@ export default function CoursesPage() {
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {COURSES.map((c, i) => (
-            <Reveal key={c.slug} delay={(i % 3) * 0.05}>
+            <Reveal key={c.slug} delay={(i % 3) * 0.05} direction={i % 2 === 0 ? "left" : "right"}>
               <motion.article whileHover={{ y: -4 }} className="card-soft flex h-full flex-col p-6">
                 <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#0a3a24]/50">{c.classLevel} · {c.track}</p>
                 <h2 className="display-serif mt-1 text-[22px] leading-tight text-[#1c2b22]">{c.title}</h2>

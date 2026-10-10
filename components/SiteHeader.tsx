@@ -5,11 +5,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { gsap, useGSAP, prefersReducedMotion } from "./motion/anim";
 import {
   BookOpen,
   ClipboardCheck,
   Compass,
-  FlaskConical,
   Map as MapIcon,
   PenLine,
   Rocket,
@@ -331,6 +331,16 @@ export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const rootRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
+
+  /* Mount entrance: bar slides down with a soft bounce (GSAP, once) */
+  useGSAP(
+    () => {
+      if (prefersReducedMotion() || !barRef.current) return;
+      gsap.from(barRef.current, { y: -72, autoAlpha: 0, duration: 0.8, ease: "back.out(1.3)" });
+    },
+    { scope: rootRef }
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -359,7 +369,7 @@ export default function SiteHeader() {
 
   return (
     <header ref={rootRef} className="sticky top-0 z-50 border-b border-[#e4e0d4] bg-[#faf8f3]/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+      <div ref={barRef} className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="flex min-h-0 items-center gap-2.5" aria-label="The Achievers home">
           <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-[#e4e0d4] bg-white">
             <Image src="/logo-mark.webp" alt="The Achievers logo" width={72} height={72} className="h-8 w-8 object-contain" priority />

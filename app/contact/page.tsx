@@ -1,5 +1,6 @@
 "use client";
 import { SITE } from "@/lib/data";
+import Reveal from "@/components/Reveal";
 import PopButton from "@/components/ui/pop-button";
 
 export default function ContactPage() {
@@ -23,7 +24,8 @@ export default function ContactPage() {
             <a href={SITE.maps} target="_blank" rel="noreferrer" className="text-sm font-bold text-[#0a3a24] underline">View on Map</a>
           </div>
         </div>
-        <form className="card-soft mt-4 space-y-3 p-5" onSubmit={(e) => e.preventDefault()}>
+        <Reveal direction="zoom" distance={0.6} delay={0.1}>
+          <form className="card-soft mt-4 space-y-3 p-5" onSubmit={(e) => e.preventDefault()}>
           <div className="grid gap-3 sm:grid-cols-2">
             <input required placeholder="Name" className="field" />
             <input required placeholder="Phone" className="field" />
@@ -31,6 +33,7 @@ export default function ContactPage() {
           <textarea required placeholder="Message" rows={4} className="field" />
           <PopButton className="w-full normal-case rounded-full px-5 py-3.5 text-sm font-bold text-white bg-[#0a3a24] border-[#07271a] shadow-[0_8px_0_-2px_#cbe4c6,0_8px_0_0_#07271a] hover:bg-[#0e4a2e] hover:shadow-[0_5px_0_-2px_#cbe4c6,0_5px_0_0_#07271a] active:bg-[#0e4a2e] active:shadow-[0_0px_0_-2px_#cbe4c6,0_0px_0_0_#07271a]">Send Message</PopButton>
         </form>
+          </Reveal>
         <iframe title="Map" src="https://www.google.com/maps?q=Mahendranagar,Kanchanpur,Nepal&output=embed" className="mt-4 h-64 w-full rounded-[22px] border border-[#e4e0d4]" loading="lazy" />
       </div>
     </div>

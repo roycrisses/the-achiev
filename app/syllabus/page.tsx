@@ -50,7 +50,7 @@ export default function SyllabusPage() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: (i % 2) * 0.05 }}
+                transition={{ duration: 0.7, delay: (i % 2) * 0.05, ease: [0.34, 1.56, 0.64, 1] }}
                 className="card-soft group p-5"
                 open
               >
@@ -85,7 +85,7 @@ export default function SyllabusPage() {
               ["Numerics are rented marks", "Physics and Maths numerics follow 6–8 repeating templates. Drill each template ten times and the board simply hands you those marks. Theory can wobble; templates don't."],
               ["Write for the checker", "NEB checkers award stepwise marks. Our answer-writing workshops teach the exact step order — given, formula, substitution, unit — that converts a correct answer into full marks instead of mercy marks."],
             ].map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
+              <Reveal key={t} delay={i * 0.05} direction="up">
                 <div className="h-full rounded-[20px] bg-[#faf8f3] p-5 ring-1 ring-[#e4e0d4]">
                   <p className="text-[11px] font-black tabular-nums tracking-[0.2em] text-[#0a3a24]/50">Rule {i + 1}</p>
                   <p className="mt-1 font-bold tracking-tight text-[#1c2b22]">{t}</p>

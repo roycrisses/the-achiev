@@ -44,7 +44,7 @@ export default function AboutPage() {
           </Reveal>
           <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
             {STATS.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.05}>
+              <Reveal key={s.label} delay={i * 0.08} direction="up">
                 <div className="rounded-[20px] bg-white/85 p-5 text-center backdrop-blur">
                   <p className="display-serif text-3xl text-[#0a3a24]">{s.value}</p>
                   <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-[#0a3a24]/55">{s.label}</p>
@@ -63,7 +63,7 @@ export default function AboutPage() {
         </Reveal>
         <div className="mt-6">
           {TIMELINE.map(([year, title, body], i) => (
-            <Reveal key={year} delay={i * 0.04}>
+            <Reveal key={year} delay={i * 0.04} direction={i % 2 === 0 ? "left" : "right"}>
               <div className="card-soft mb-3 grid gap-2 p-5 sm:grid-cols-[100px_1fr_1.4fr] sm:items-center sm:gap-6 sm:p-6">
                 <p className="display-serif text-4xl text-[#0a3a24]">{year}</p>
                 <p className="text-[15px] font-bold tracking-tight text-[#1c2b22]">{title}</p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </Reveal>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {VALUES.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
+              <Reveal key={t} delay={i * 0.05} direction="up">
                 <div className="h-full rounded-[20px] bg-[#faf8f3] p-6 ring-1 ring-[#e4e0d4]">
                   <p className="text-[11px] font-black tabular-nums tracking-[0.2em] text-[#0a3a24]/50">{String(i + 1).padStart(2, "0")}</p>
                   <p className="mt-1 text-lg font-bold tracking-tight text-[#1c2b22]">{t}</p>

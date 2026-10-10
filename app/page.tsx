@@ -140,7 +140,7 @@ export default function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.34, 1.56, 0.64, 1] }}
                 className="relative flex h-full flex-col gap-3"
               >
                 <div className="card-soft overflow-hidden !rounded-2xl">
@@ -183,11 +183,11 @@ export default function Home() {
             <Reveal>
               <p className="text-[15px] font-semibold text-[#0a3a24]/70">Trusted by 100,000+ families across Nepal</p>
               <div className="mt-5 flex flex-wrap items-end justify-center gap-x-10 gap-y-4">
-                {STATS.map((s) => (
-                  <div key={s.label}>
+                {STATS.map((s, i) => (
+                  <Reveal key={s.label} delay={i * 0.08} direction="up">
                     <p className="display-serif text-3xl text-[#0a3a24] sm:text-4xl">{s.value}</p>
                     <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0a3a24]/50">{s.label}</p>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
             </Reveal>
@@ -225,7 +225,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.55, delay: 0.05 }}
+                transition={{ duration: 0.75, delay: 0.05, ease: [0.34, 1.56, 0.64, 1] }}
                 className="lg:sticky"
                 style={{ top: `${112 + i * 12}px` }}
               >
@@ -256,7 +256,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-6 border-t border-[#e4e0d4]">
             {SUBJECTS.map((s, i) => (
-              <Reveal key={s} delay={Math.min(i * 0.03, 0.2)}>
+              <Reveal key={s} delay={Math.min(i * 0.03, 0.2)} direction={i % 2 === 0 ? "left" : "right"}>
                 <Link
                   href="/courses"
                   className="ed-row group flex items-center justify-between gap-4 border-b border-[#e4e0d4] px-2 py-3.5 sm:px-4"
@@ -302,7 +302,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.55 }}
+              transition={{ duration: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
               whileHover={{ y: -3 }}
               className="card-soft p-6 sm:p-7 lg:sticky"
               style={{ top: `${112 + i * 14}px` }}
@@ -336,7 +336,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-6 grid gap-5 sm:grid-cols-3">
             {IMAGES.essay.map((img, i) => (
-              <Reveal key={img.src} delay={i * 0.07}>
+              <Reveal key={img.src} delay={i * 0.07} direction={i === 0 ? "left" : i === 2 ? "right" : "up"}>
                 <figure className="group overflow-hidden rounded-[20px] border border-[#e4e0d4] bg-white shadow-[0_20px_44px_-26px_rgba(10,58,36,0.35)] transition-transform hover:-translate-y-1">
                   <div className="overflow-hidden">
                     <Image
@@ -379,7 +379,7 @@ export default function Home() {
             </Reveal>
             <div className="space-y-3">
               {METHOD.map(([t, d], i) => (
-                <Reveal key={t} delay={i * 0.06}>
+                <Reveal key={t} delay={i * 0.06} direction="right">
                   <div className="rounded-[20px] bg-white/85 p-6 backdrop-blur">
                     <p className="text-[11px] font-black tabular-nums tracking-[0.2em] text-[#0a3a24]/60">Habit {String(i + 1).padStart(2, "0")}</p>
                     <p className="mt-1 text-lg font-bold tracking-tight text-[#0a3a24]">{t}</p>
@@ -405,7 +405,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {USPS.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.06}>
+              <Reveal key={t} delay={i * 0.06} direction={i % 2 === 0 ? "left" : "right"}>
                 <div className="card-soft h-full p-6">
                   <p className="text-[11px] font-black tabular-nums text-[#0a3a24]/45">{String(i + 1).padStart(2, "0")}</p>
                   <p className="mt-1 text-[16px] font-bold tracking-tight text-[#1c2b22]">{t}</p>
@@ -434,7 +434,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {TEACHERS.filter((t) => t.featured).map((t, i) => (
-              <Reveal key={t.slug} delay={i * 0.05}>
+              <Reveal key={t.slug} delay={i * 0.08} direction="up">
                 <motion.article whileHover={{ y: -4 }} className="group rounded-[20px] bg-white/90 p-5 text-center backdrop-blur">
                   <div className="mx-auto h-24 w-24 overflow-hidden rounded-full ring-4 ring-white">
                     <Image
@@ -493,7 +493,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-5 border-t border-[#e4e0d4]">
             {FAQS.map((f, i) => (
-              <Reveal key={f.q} delay={i * 0.04}>
+              <Reveal key={f.q} delay={i * 0.04} direction="left">
                 <details className="group border-b border-[#e4e0d4] py-4">
                   <summary className="flex cursor-pointer list-none items-baseline gap-4 text-[15px] font-bold tracking-tight text-[#1c2b22] [&::-webkit-details-marker]:hidden">
                     <span className="text-[11px] tabular-nums text-[#0a3a24]/45">{String(i + 1).padStart(2, "0")}</span>
@@ -510,7 +510,7 @@ export default function Home() {
 
       {/* ============ APP CTA — pine panel ============ */}
       <section className="px-3 py-4 sm:px-5">
-        <Reveal className="mx-auto max-w-6xl">
+        <Reveal className="mx-auto max-w-6xl" direction="zoom" distance={0.6}>
           <div className="panel-pine grid gap-6 p-8 sm:grid-cols-2 sm:items-center sm:p-10">
             <div>
               <p className="ed-display text-3xl text-white">Get the Android app</p>
@@ -531,7 +531,7 @@ export default function Home() {
 
       {/* ============ COLOPHON — living wordmark ============ */}
       <section className="mx-auto max-w-6xl px-4 pb-14 pt-6 sm:px-6">
-        <Reveal>
+        <Reveal direction="zoom" distance={0.6}>
           <div className="card-soft overflow-hidden p-6 sm:p-8">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <p className="ed-kicker">Colophon · set in Fraunces</p>

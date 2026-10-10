@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import Reveal from "@/components/Reveal";
 import PopButton from "@/components/ui/pop-button";
 
 function Form() {
@@ -15,6 +16,7 @@ function Form() {
         <h1 className="ed-display mt-2 text-4xl text-[#1c2b22]">Register in 1 minute</h1>
         {course && <p className="card-soft mt-3 bg-[#eef5ec] p-3 text-sm font-bold text-[#0a3a24]">Enrolling: {course}</p>}
         {done ? <p className="card-soft mt-6 bg-[#eef5ec] p-5 font-bold text-[#0a3a24]">Registered! Check SMS for OTP + login link.</p> : (
+          <Reveal direction="zoom" distance={0.6} delay={0.1}>
           <form
             className="card-soft mt-6 space-y-3 p-6"
             onSubmit={async (e) => {
@@ -32,6 +34,7 @@ function Form() {
             <input name="password" required type="password" placeholder="Create password" className="field" />
             <PopButton className="w-full normal-case rounded-full px-5 py-3.5 text-sm font-bold text-white bg-[#0a3a24] border-[#07271a] shadow-[0_8px_0_-2px_#cbe4c6,0_8px_0_0_#07271a] hover:bg-[#0e4a2e] hover:shadow-[0_5px_0_-2px_#cbe4c6,0_5px_0_0_#07271a] active:bg-[#0e4a2e] active:shadow-[0_0px_0_-2px_#cbe4c6,0_0px_0_0_#07271a]">Create Account</PopButton>
           </form>
+          </Reveal>
         )}
       </div>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Reveal from "@/components/Reveal";
 import PopButton from "@/components/ui/pop-button";
 
 const PINE_POP =
@@ -24,6 +25,7 @@ export default function DemoPage() {
         {sent ? (
           <div className="card-soft mt-6 bg-[#eef5ec] p-6 font-bold text-[#0a3a24]">Done! Slot request received. Check SMS shortly. <Link className="underline" href="/tests/free">Try a mock while you wait →</Link></div>
         ) : (
+          <Reveal direction="zoom" distance={0.6} delay={0.1}>
           <form
             className="card-soft mt-6 space-y-3 p-5 sm:p-6"
             onSubmit={async (e) => {
@@ -45,6 +47,7 @@ export default function DemoPage() {
             </div>
             <PopButton type="submit" className={PINE_POP}>Confirm Free Slot ↗</PopButton>
           </form>
+          </Reveal>
         )}
       </div>
     </div>

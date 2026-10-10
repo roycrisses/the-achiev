@@ -33,7 +33,7 @@ export default function TeachersPage() {
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TEACHERS.map((t, i) => (
-            <Reveal key={t.slug} delay={(i % 3) * 0.05}>
+            <Reveal key={t.slug} delay={(i % 3) * 0.05} direction={i % 2 === 0 ? "left" : "right"}>
               <motion.article whileHover={{ y: -4 }} className="card-soft p-6 text-center">
                 <div className="mx-auto h-24 w-24 overflow-hidden rounded-full ring-4 ring-[#eef5ec]">
                   <Image src={t.photo} alt={t.name} width={200} height={200} className="h-full w-full object-cover" loading="lazy" />
@@ -60,7 +60,7 @@ export default function TeachersPage() {
           </Reveal>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {HIRING.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
+              <Reveal key={t} delay={i * 0.05} direction="up">
                 <div className="h-full rounded-[20px] bg-[#faf8f3] p-5 ring-1 ring-[#e4e0d4]">
                   <p className="text-[11px] font-black tabular-nums tracking-[0.2em] text-[#0a3a24]/50">Gate {i + 1}</p>
                   <p className="mt-1 font-bold tracking-tight text-[#1c2b22]">{t}</p>

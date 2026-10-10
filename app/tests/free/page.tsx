@@ -32,7 +32,7 @@ export default function FreeTestsPage() {
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {MOCK_TESTS.map((t, i) => (
-            <Reveal key={t.id} delay={(i % 3) * 0.05}>
+            <Reveal key={t.id} delay={(i % 3) * 0.05} direction={i % 2 === 0 ? "left" : "right"}>
               <motion.article whileHover={{ y: -4 }} className="card-soft flex h-full flex-col p-6">
                 <span className={`inline-block w-fit rounded-full px-3 py-1 text-[11px] font-bold shadow-sm ${subjectClass(t.subject)}`}>{t.subject}</span>
                 <h2 className="mt-3 font-bold tracking-tight text-[#1c2b22]">{t.title}</h2>
@@ -59,7 +59,7 @@ export default function FreeTestsPage() {
           </Reveal>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {RITUAL.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
+              <Reveal key={t} delay={i * 0.05} direction="up">
                 <div className="h-full rounded-[20px] bg-[#faf8f3] p-5 ring-1 ring-[#e4e0d4]">
                   <p className="text-[11px] font-black tabular-nums tracking-[0.2em] text-[#0a3a24]/50">Step {i + 1}</p>
                   <p className="mt-1 font-bold tracking-tight text-[#1c2b22]">{t}</p>
