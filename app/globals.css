@@ -1,26 +1,334 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+
+  /* Ease-style palette: deep pine, warm cream, sage + mist panels */
+  --color-cream: #faf8f3;
+  --color-parchment: #f3efe6;
+  --color-ink: #1c2b22;
+  --color-pine-950: #07271a;
+  --color-pine-900: #0a3a24;
+  --color-pine-800: #0e4a2e;
+  --color-pine-700: #166038;
+  --color-pine-100: #dcead9;
+  --color-pine-50: #eef5ec;
+  --color-sage-300: #b9d9b4;
+  --color-sage-200: #cbe4c6;
+  --color-sage-100: #e3f0e0;
+  --color-mist-300: #a9c3d1;
+  --color-mist-200: #c0d4de;
+  --color-mist-100: #e2ecf1;
+  --color-muted: #5d6f63;
+  --color-line: #e4e0d4;
+
+  /* Legacy accents, kept for tiny highlights (stars, ticks) */
+  --color-accent: #e8590c;
+  --color-canvas: #f1f1f0;
+  --color-brand-600: #17809f;
+  --color-brand-700: #0e6b8a;
+  --color-brand-900: #0b4a5e;
+  --color-cta-500: #e8590c;
+  --color-cta-600: #c74a08;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f3;
+  --foreground: #1c2b22;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #faf8f3;
+  color: #1c2b22;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Large tap targets */
+a,
+button {
+  min-height: 44px;
+}
+
+/* Global tactile click: every press dips slightly */
+a,
+button {
+  transition: transform 0.12s ease;
+}
+a:active,
+button:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   ACHIEVERS × EASE SYSTEM
+   Soft cream canvas · deep pine ink · sage + mist panels ·
+   serif display · generous radii (20–28px cards, full pills).
+   ============================================================ */
+
+::selection {
+  background: #0a3a24;
+  color: #ffffff;
+}
+
+/* ---- Signature surfaces ---- */
+.card-soft {
+  background: #ffffff;
+  border: 1px solid #e4e0d4;
+  border-radius: 22px;
+  box-shadow: 0 24px 50px -28px rgba(10, 58, 36, 0.28);
+}
+.panel-sage {
+  background: #cbe4c6;
+  border-radius: 26px;
+}
+.panel-mist {
+  background: #c0d4de;
+  border-radius: 26px;
+}
+.panel-pine {
+  background: #0a3a24;
+  color: #ffffff;
+  border-radius: 26px;
+}
+.btn-pine {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #0a3a24;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 14px 26px -14px rgba(10, 58, 36, 0.55);
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+.btn-pine:hover {
+  background: #0e4a2e;
+}
+.chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: 12px;
+  background: #e3f0e0;
+  color: #0a3a24;
+}
+
+/* Soft form field */
+.field {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid #e4e0d4;
+  background: #ffffff;
+  padding: 0.8rem 1rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1c2b22;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.field::placeholder {
+  color: rgba(10, 58, 36, 0.35);
+}
+.field:focus {
+  border-color: #0a3a24;
+  box-shadow: 0 0 0 3px rgba(10, 58, 36, 0.12);
+}
+
+/* ---- Type ---- */
+.display-serif {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+/* Editorial kicker — small-caps section label with pine tick */
+.ed-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0a3a24;
+}
+.ed-kicker::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+  background: #0a3a24;
+}
+
+/* Display headline — serif, tight, sentence case */
+.ed-display {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+/* Standfirst — the editorial lede paragraph */
+.ed-standfirst {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #5d6f63;
+  text-wrap: pretty;
+}
+
+/* Soft rules */
+.ed-rule-t { border-top: 1px solid #e4e0d4; }
+.ed-rule-b { border-bottom: 1px solid #e4e0d4; }
+.ed-hairline { border-color: #e4e0d4; }
+
+/* Pale section numeral */
+.ed-index {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #cbe4c6;
+}
+
+/* Serif voice for pull quotes + captions */
+.ed-serif {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+.ed-caption {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #5d6f63;
+}
+.ed-caption strong {
+  color: #1c2b22;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+
+/* Drop cap for article-style openers */
+.ed-dropcap::first-letter {
+  float: left;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 3.2em;
+  font-weight: 560;
+  line-height: 0.85;
+  padding-right: 0.12em;
+  color: #0a3a24;
+}
+
+/* Ticker band */
+.ed-ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Soft index row (subjects list) */
+.ed-row {
+  transition: background-color 0.18s ease, color 0.18s ease;
+  border-radius: 16px;
+}
+.ed-row:hover {
+  background: #0a3a24;
+  color: #ffffff;
+}
+.ed-row:hover .ed-row-sub {
+  color: #cbe4c6;
+}
+.ed-row:hover .ed-row-arrow {
+  background: #ffffff;
+  color: #0a3a24;
+}
+.ed-row-arrow {
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+/* ============================================================
+   Required components — FlipText / TechText / Strands
+   ============================================================ */
+
+/* FlipText — per-character 3D flip wave for sub-section headlines.
+   Timing comes from --flip-duration / --flip-delay / --flip-iteration
+   set inline per character by the component. */
+.flip-char {
+  animation-name: flip-char;
+  animation-duration: var(--flip-duration, 2.2s);
+  animation-delay: var(--flip-delay, 0s);
+  animation-iteration-count: var(--flip-iteration, infinite);
+  animation-timing-function: cubic-bezier(0.34, 1.3, 0.64, 1);
+  backface-visibility: visible;
+}
+@keyframes flip-char {
+  0% { transform: rotateX(0deg); }
+  45%, 60% { transform: rotateX(180deg); }
+  100% { transform: rotateX(360deg); }
+}
+
+/* TechText — interactive canvas wordmark */
+.tech-text {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  touch-action: pan-y;
+  user-select: none;
+}
+.tech-text-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Strands — WebGL glow backdrop */
+.strands-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+.strands-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-char {
+    animation: none;
+  }
+}
+.giant-word {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  text-transform: lowercase;
+  user-select: none;
+}
+
+/* Subject pills — sage / mist tints */
+.subj-physics { background: #e2ecf1; color: #0e4a5e; border: 1px solid #c4d6e0; }
+.subj-chemistry { background: #eef5ec; color: #2c5c34; border: 1px solid #d3e5cf; }
+.subj-mathematics { background: #eef5ec; color: #0a3a24; border: 1px solid #c6dfc1; }
+.subj-biology { background: #e3f0e0; color: #166038; border: 1px solid #c6dfc1; }
+.subj-accountancy { background: #faf6ec; color: #7a5b17; border: 1px solid #e8dcc0; }
+.subj-economics { background: #e2ecf1; color: #0e4a5e; border: 1px solid #c4d6e0; }
+.subj-english { background: #f3efe6; color: #4c5a51; border: 1px solid #e4e0d4; }
+.subj-computer { background: #e2ecf1; color: #0e4a5e; border: 1px solid #c4d6e0; }
